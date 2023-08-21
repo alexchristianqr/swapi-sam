@@ -1,0 +1,14 @@
+version = 0.1
+[default.global.parameters]
+stack_name = "my-demo-swapi-app"
+
+[default.deploy.parameters]
+parameter_overrides = [
+    "Env=dev",
+    "Stage=dev",
+    "MySecretEnv=abc123",
+]
+s3_bucket = "apps"
+s3_prefix = "my-demo-swapi-app"
+region = "us-east-1"
+capabilities = "CAPABILITY_NAMED_IAM"

@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+
+  backend:
+    image: "my-image-backend"
+    container_name: "my-container-backend"
+    build: "."
+    command: npm run serve
+    env_file:
+      - "./.env.local"
+    ports:
+      - "3000:3000"
+
+  frontend:
+    image: "my-image-frontend"
+    container_name: "my-container-frontend"
+    build: "."
+    command: npm run serve
+    volumes:
+      - ".:/app/"
+      - "/app/node_modules"
+    environment:
+      - "PORT=3999"
+      - "HOST=http://127.0.0.1"
+    ports:
+      - "4000:3999"

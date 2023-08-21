@@ -1,0 +1,10 @@
+node_modules
+dist
+.env.local
+.aws-sam
+aws
+.github
+.git
+.idea
+manifests
+.vscode
