@@ -4,9 +4,11 @@ stack_name = "my-demo-swapi-app"
 
 [default.deploy.parameters]
 parameter_overrides = [
-    "Env=dev",
-    "Stage=dev",
-    "MySecretEnv=abc123",
+    "StageEnv=dev",
+    "MysqlHostnameEnv=my-db-mysql.cnwbizaxdasc.us-east-1.rds.amazonaws.com",
+    "MysqlUsernameEnv=admin",
+    "MysqlPwdEnv=Admin123.",
+    "MysqlDatabaseEnv=dbswapi",
 ]
 s3_bucket = "mystoragebuckets3"
 s3_prefix = "my-demo-swapi-app"

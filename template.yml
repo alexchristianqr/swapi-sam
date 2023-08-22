@@ -12,6 +12,9 @@ Globals:
     Timeout: 30
 
 Parameters:
+  StageEnv:
+    Type: String
+    Default: "dev"
   MysqlHostnameEnv:
     Type: String
     Default: "my-db-mysql.cnwbizaxdasc.us-east-1.rds.amazonaws.com"
@@ -26,11 +29,11 @@ Parameters:
     Default: "dbswapi"
 
 Resources:
-  MyDemoEndpointFunction:
+  PeopleEndpointFunction:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: "MyDemoEndpointFunction"
-      Description: "..."
+      FunctionName: "PeopleEndpointFunction"
+      Description: "Función lambda para controlar endpoints para el modulo 'people'"
       Handler: "dist/people/handler.handler"
       Environment:
         Variables:
@@ -39,52 +42,52 @@ Resources:
           MYSQL_PWD: !Ref MysqlPwdEnv
           MYSQL_DATABASE: !Ref MysqlDatabaseEnv
       Events:
-        AllExamples:
+        AllPeople:
           Type: Api
           Properties:
-            RestApiId: !Ref MyDemoBasicApiGateway
-            Path: /examples
+            RestApiId: !Ref SwapiBasicApiGateway
+            Path: /people
             Method: GET
             RequestParameters:
               - method.request.querystring.startDate: # Fecha de inicio para filtrar
                   Required: true
               - method.request.querystring.endDate: # Fecha fin para filtrar
                   Required: true
-        FilterExampleByID:
+        CreatePeople:
           Type: Api
           Properties:
-            RestApiId: !Ref MyDemoBasicApiGateway
-            Path: /examples/{id}
-            Method: GET
-        CreateExample:
-          Type: Api
-          Properties:
-            RestApiId: !Ref MyDemoBasicApiGateway
-            Path: /examples
+            RestApiId: !Ref SwapiBasicApiGateway
+            Path: /people
             Method: POST
-        UpdateExample:
+        PeopleById:
           Type: Api
           Properties:
-            RestApiId: !Ref MyDemoBasicApiGateway
-            Path: /examples/{id}
+            RestApiId: !Ref SwapiBasicApiGateway
+            Path: /people/{id}
+            Method: GET
+        UpdatePeople:
+          Type: Api
+          Properties:
+            RestApiId: !Ref SwapiBasicApiGateway
+            Path: /people/{id}
             Method: PUT
-        PatchExampleById:
+        UpdatePeopleByField:
           Type: Api
           Properties:
-            RestApiId: !Ref MyDemoBasicApiGateway
-            Path: /examples/{id}
+            RestApiId: !Ref SwapiBasicApiGateway
+            Path: /people/{id}
             Method: PATCH
-        DeleteExample:
+        DeletePeople:
           Type: Api
           Properties:
-            RestApiId: !Ref MyDemoBasicApiGateway
-            Path: /examples/{id}
+            RestApiId: !Ref SwapiBasicApiGateway
+            Path: /people/{id}
             Method: DELETE
-  MyDemoBasicApiGateway:
+  SwapiBasicApiGateway:
     Type: AWS::Serverless::Api
     Properties:
-      Name: "MyDemoBasicApiGateway"
-      StageName: dev
+      Name: "SwapiBasicApiGateway"
+      StageName: !Ref StageEnv
       Cors:
         AllowMethods: "'*'"
         AllowHeaders: "'*'"
