@@ -5,8 +5,8 @@ import { PeopleEntity } from "../people.entity"
 class PeoplePersistenceGateway implements PeopleInterface {
   private items: Array<any> = []
 
-  async create(createExampleDto: CreatePeopleDto): Promise<CreatePeopleDto> {
-    return this.items.push(createExampleDto)
+  async create(createPeopleDto: CreatePeopleDto): Promise<any> {
+    return this.items.push(createPeopleDto)
   }
 
   async findAll(): Promise<Array<PeopleEntity>> {
