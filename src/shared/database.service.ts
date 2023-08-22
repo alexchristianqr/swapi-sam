@@ -14,9 +14,9 @@ class DatabaseService {
     }
   }
 
-  async select(sql: string): Promise<any> {
+  async select(sql: string, values?: any | null): Promise<any> {
     const db = await this.connect()
-    const [rows, fields] = await db.query(sql)
+    const [rows, fields] = await db.query(sql, values)
     return rows
   }
 

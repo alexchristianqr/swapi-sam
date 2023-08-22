@@ -23,6 +23,15 @@ class PeopleService {
       result: result
     }
   }
+
+  async findById(event: APIGatewayProxyEvent): Promise<Response> {
+    const { id } = event.pathParameters
+    const result = await provider.findById(parseInt(id))
+    return {
+      message: "people founded",
+      result: result
+    }
+  }
 }
 
 export const peopleService = new PeopleService()

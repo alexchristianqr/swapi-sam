@@ -11,14 +11,35 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
 
     switch (event.httpMethod) {
       case "GET":
-        result = await peopleService.findAll(event)
-        return {
-          statusCode: 200,
-          body: JSON.stringify({
-            success: true,
-            result
-          })
+        switch (event.resource) {
+          case "/people":
+            result = await peopleService.findAll(event)
+            return {
+              statusCode: 200,
+              body: JSON.stringify({
+                success: true,
+                result
+              })
+            }
+          case "/people/{id}":
+            result = await peopleService.findById(event)
+            return {
+              statusCode: 200,
+              body: JSON.stringify({
+                success: true,
+                result
+              })
+            }
+          default:
+            return {
+              statusCode: 500,
+              body: JSON.stringify({
+                success: false,
+                message: `Metodo: ${event.httpMethod} y recurso: ${event.resource} no disponible`
+              })
+            }
         }
+
       case "POST":
         result = await peopleService.create(event)
         return {
@@ -33,7 +54,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
           statusCode: 500,
           body: JSON.stringify({
             success: false,
-            message: `El tipo de solicitud no está soportada: "${event.httpMethod}"`
+            message: `Metodo: ${event.httpMethod} y recurso: ${event.resource} no disponible`
           })
         }
     }

@@ -13,6 +13,11 @@ class PeopleMysqlGateway implements PeopleInterface {
     const sql = `select * from people`
     return databaseService.select(sql)
   }
+
+  async findById(id: number): Promise<PeopleEntity> {
+    const sql = `select * from people where id = ?`
+    return databaseService.select(sql, [id])
+  }
 }
 
 export const provider = new PeopleMysqlGateway()
