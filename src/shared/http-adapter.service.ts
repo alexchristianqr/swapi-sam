@@ -1,10 +1,5 @@
-import axios, { AxiosResponse, isAxiosError, AxiosRequestConfig } from "axios"
-
-interface HttpManagerOptions {
-  isPublic?: boolean
-  headers?: Record<string, string>
-  config?: AxiosRequestConfig
-}
+import axios, { AxiosResponse, isAxiosError } from "axios"
+import { HttpManagerOptions } from "./global.interface"
 
 class ResponseError extends Error {
   private status: number | undefined
@@ -18,18 +13,14 @@ class ResponseError extends Error {
   }
 }
 
-class HttpService {
+class HttpAdapterService {
   constructor(baseUrl: string) {
     axios.defaults.baseURL = baseUrl
   }
 
-  getHTTPClient(options?: HttpManagerOptions) {
-    return axios
-  }
-
   async get(url: string, options: HttpManagerOptions = {}) {
     try {
-      return this.getHTTPClient(options).get(url)
+      return axios.get(url)
     } catch (error) {
       if (isAxiosError(error)) throw new ResponseError(error.response)
       else console.error(error)
@@ -38,7 +29,7 @@ class HttpService {
 
   async post<T>(url: string, data?: T | Record<string, unknown>, options: HttpManagerOptions = {}) {
     try {
-      return await this.getHTTPClient(options).post(url, data, {
+      return await axios.post(url, data, {
         responseType: "json",
         headers: {
           ...options.headers
@@ -51,4 +42,4 @@ class HttpService {
   }
 }
 
-export const httpService = new HttpService("https://swapi.py4e.com/api/")
+export const httpAdapterService = new HttpAdapterService("https://swapi.py4e.com/api/")
