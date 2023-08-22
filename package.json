@@ -6,11 +6,11 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "aws:build": "node sam build --config-file samconfig-develop.toml",
+    "aws:build": "sam build --config-file samconfig-develop.toml",
     "aws:deploy": "sam deploy --config-file samconfig-develop.toml",
-    "aws:local": "npm run build && sam local start-api --config-file samconfig-develop.toml",
     "aws": "npm run aws:build && npm run aws:deploy",
-    "build": "tsc"
+    "aws:local": "npm run compile && sam local start-api --config-file samconfig-develop.toml",
+    "compile": "tsc"
   },
   "dependencies": {
     "aws-sdk": "^2.1440.0",

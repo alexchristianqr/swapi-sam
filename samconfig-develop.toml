@@ -8,7 +8,7 @@ parameter_overrides = [
     "Stage=dev",
     "MySecretEnv=abc123",
 ]
-s3_bucket = "apps"
+s3_bucket = "mystoragebuckets3"
 s3_prefix = "my-demo-swapi-app"
 region = "us-east-1"
 capabilities = "CAPABILITY_NAMED_IAM"
