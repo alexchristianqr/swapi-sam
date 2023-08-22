@@ -8,7 +8,7 @@
   "scripts": {
     "aws:build": "sam build --config-file samconfig-develop.toml",
     "aws:deploy": "sam deploy --config-file samconfig-develop.toml",
-    "aws": "npm run aws:build && npm run aws:deploy",
+    "aws": "npm run compile && npm run aws:deploy",
     "aws:local": "npm run compile && sam local start-api --config-file samconfig-develop.toml",
     "compile": "tsc"
   },
