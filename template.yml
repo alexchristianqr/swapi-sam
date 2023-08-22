@@ -17,7 +17,7 @@ Resources:
     Properties:
       FunctionName: "MyDemoEndpointFunction"
       Description: "..."
-      Handler: "dist/personas/handler.handler"
+      Handler: "dist/people/handler.handler"
       Events:
         AllExamples:
           Type: Api
