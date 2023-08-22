@@ -1,11 +1,16 @@
 # AWS SAM
 
-Utilice el modelo de aplicación sin servidor de AWS (AWS SAM - Serverless Aplication Model) para crear y ejecutar sus aplicaciones sin servidor.
+Utilice el modelo de aplicación sin servidor de AWS (AWS SAM - Serverless Aplication Model) para crear y ejecutar sus
+aplicaciones sin servidor.
+
+###### Plantilla creada por Alex Christian
 
 ## PDF en español
+
 [Servicios de AWS en pdf](https://d1.awsstatic.com/whitepapers/es_ES/aws-overview.pdf)
 
 ## Official Documentation
+
 - [Serverless Api](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-api.html)
 - [ApiGateway](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_ApiGateway.html)
 - [ApiGatewayV2](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_ApiGatewayV2.html)
@@ -15,3 +20,4 @@ Utilice el modelo de aplicación sin servidor de AWS (AWS SAM - Serverless Aplic
 - [AWS Lambda](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_Lambda.html)
 - [Step Functions](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/sam-resource-statemachine.html)
 - [Amazon EventBridge](https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/AWS_Events.html)
+
