@@ -6,13 +6,12 @@ import { httpService } from "../../shared/http.service"
 class PeopleSwapiGateway implements PeopleInterface {
   private url = `people`
 
-  async create(createExampleDto: CreatePeopleDto): Promise<CreatePeopleDto> {
-    return httpService.post(this.url, {})
+  async create(createPeopleDto: CreatePeopleDto): Promise<any> {
+    return httpService.post(this.url, createPeopleDto)
   }
 
   async findAll(): Promise<Array<PeopleEntity>> {
     const { data } = await httpService.get(this.url)
-    console.log({ data })
     return data?.results
   }
 }
