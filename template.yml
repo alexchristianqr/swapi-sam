@@ -46,13 +46,19 @@ Resources:
           Type: Api
           Properties:
             RestApiId: !Ref MyDemoBasicApiGateway
-            Path: /examples
+            Path: /examples/{id}
             Method: PUT
+        PatchExampleById:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyDemoBasicApiGateway
+            Path: /examples/{id}
+            Method: PATCH
         DeleteExample:
           Type: Api
           Properties:
             RestApiId: !Ref MyDemoBasicApiGateway
-            Path: /examples
+            Path: /examples/{id}
             Method: DELETE
   MyDemoBasicApiGateway:
     Type: AWS::Serverless::Api

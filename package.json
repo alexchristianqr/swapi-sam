@@ -8,11 +8,9 @@
   "scripts": {
     "aws:build": "node sam build --config-file samconfig-develop.toml",
     "aws:deploy": "sam deploy --config-file samconfig-develop.toml",
+    "aws:local": "sam local start-api --config-file samconfig-develop.toml",
     "aws": "npm run aws:build && npm run aws:deploy",
-    "build": "tsc",
-    "serve": "node src/app/main.js",
-    "pm2:start": "pm2 start src/app/main.js",
-    "nodemon:start": "npm run build && nodemon start ./dist/app.js"
+    "build": "tsc"
   },
   "dependencies": {
     "aws-sdk": "^2.1440.0",
