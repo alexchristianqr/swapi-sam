@@ -3,8 +3,8 @@
 node_modules
 package-lock.json
 .aws-sam
-template.yml
 aws/templates/example.yml
 index.js
 .env
 .env.local
+dist

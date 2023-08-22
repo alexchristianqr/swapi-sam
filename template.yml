@@ -1,0 +1,88 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Transform: AWS::Serverless-2016-10-31
+
+Description: "My demo deploy AWS SAM Cloud Formation"
+
+Globals:
+  Function:
+    Runtime: nodejs14.x
+    Architectures:
+      - arm64
+    MemorySize: 128
+    Timeout: 30
+
+Resources:
+  MyDemoBasicAuthorizerFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: "MyDemoBasicAuthorizerFunction"
+      Handler: "src/lambda-functions/authorizer.handler"
+      Policies:
+        - Statement:
+            Effect: Allow
+            Action:
+              - "lambda:InvokeFunction"
+            Resource: "*"
+  MyDemoEndpointFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: "MyDemoEndpointFunction"
+      Description: "..."
+      Handler: "src/lambda-functions/helloworld.handler"
+      Events:
+        AllExamples:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyDemoBasicApiGateway
+            Path: /examples
+            Method: GET
+            RequestParameters:
+              - method.request.querystring.startDate: # Fecha de inicio para filtrar
+                  Required: true
+              - method.request.querystring.endDate: # Fecha fin para filtrar
+                  Required: true
+        FilterExampleByID:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyDemoBasicApiGateway
+            Path: /examples/{id}
+            Method: GET
+        CreateExample:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyDemoBasicApiGateway
+            Path: /examples
+            Method: POST
+        UpdateExample:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyDemoBasicApiGateway
+            Path: /examples
+            Method: PUT
+        DeleteExample:
+          Type: Api
+          Properties:
+            RestApiId: !Ref MyDemoBasicApiGateway
+            Path: /examples
+            Method: DELETE
+      Policies:
+        - Statement:
+            Effect: Allow
+            Action:
+              - "lambda:InvokeFunction"
+            Resource: "*"
+  MyDemoBasicApiGateway:
+    Type: AWS::Serverless::Api
+    Properties:
+      Name: "MyDemoBasicApiGateway"
+      StageName: dev
+      Auth:
+        Authorizers:
+          BasicAuthorizer:
+            FunctionPayloadType: TOKEN
+            FunctionArn: !GetAtt MyDemoBasicAuthorizerFunction.Arn
+            Identity:
+              Header: Authorization
+              ValidationExpression: ^[Bb]earer [-0-9a-zA-z\.]*$
+              ReauthorizeEvery: 0
+        DefaultAuthorizer: "BasicAuthorizer"
