@@ -51,5 +51,4 @@ class HttpService {
   }
 }
 
-// export const httpService = new HttpService(process.env.BASE_API_URL)
 export const httpService = new HttpService("https://swapi.py4e.com/api/")

@@ -1,16 +1,27 @@
-import { CreatePeopleDto } from "./dto/create-people.dto"
-import { PeopleEntity } from "./people.entity"
 import { APIGatewayProxyEvent } from "aws-lambda/trigger/api-gateway-proxy"
-import { provider } from "./gateways/people-persistence.gateway"
+import { provider } from "./gateways/people-mysql.gateway"
+
+interface Response {
+  message: string | null
+  result: any
+}
 
 class PeopleService {
-  create(event: APIGatewayProxyEvent): Promise<CreatePeopleDto> {
+  async create(event: APIGatewayProxyEvent): Promise<Response> {
     const createExampleDto = JSON.parse(event.body)
-    return provider.create(createExampleDto)
+    const result = await provider.create(createExampleDto)
+    return {
+      message: "people created",
+      result: result
+    }
   }
 
-  findAll(event: APIGatewayProxyEvent): Promise<Array<PeopleEntity>> {
-    return provider.findAll()
+  async findAll(event: APIGatewayProxyEvent): Promise<Response> {
+    const result = await provider.findAll()
+    return {
+      message: "people list",
+      result: result
+    }
   }
 }
 

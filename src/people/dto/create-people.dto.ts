@@ -1,4 +1,4 @@
 import { PeopleEntity } from "../people.entity"
 
-// @ts-ignore
+// Validaciones de registro
 export class CreatePeopleDto extends PeopleEntity {}
