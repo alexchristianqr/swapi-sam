@@ -1,17 +1,25 @@
+console.log("Greeting from app.ts")
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda/trigger/api-gateway-proxy"
 
-console.log("Hello from app.ts XD")
-console.log("tu")
-interface Person {
-  name: string
-  surname: string
-  age: number
-}
+export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
+  try {
+    // Logger
+    console.log("[handler]", JSON.stringify({ event }))
 
-export const lambdaHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  const person: Person = JSON.parse(event.body)
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ Person: person })
+    if (process.env.MYSECRET_ENV) {
+      console.log("La variable de entorno encontrada es: MYSECRET_ENV=", process.env.MYSECRET_ENV)
+    }
+
+    console.log("Hola mundo desde lambda function...")
+
+    return {
+      statusCode: 200,
+      body: JSON.stringify({
+        success: true,
+        message: "Hola mundo desde lambda function con API Gateway..."
+      })
+    }
+  } catch (error) {
+    console.error(error)
   }
 }
