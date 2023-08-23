@@ -36,7 +36,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
       case "POST":
         result = await peopleService.create(event)
         return {
-          statusCode: 200,
+          statusCode: 201,
           body: JSON.stringify(result)
         }
       default:
