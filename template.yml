@@ -48,11 +48,6 @@ Resources:
             RestApiId: !Ref SwapiBasicApiGateway
             Path: /people
             Method: GET
-            RequestParameters:
-              - method.request.querystring.startDate: # Fecha de inicio para filtrar
-                  Required: true
-              - method.request.querystring.endDate: # Fecha fin para filtrar
-                  Required: true
         CreatePeople:
           Type: Api
           Properties:
@@ -65,24 +60,6 @@ Resources:
             RestApiId: !Ref SwapiBasicApiGateway
             Path: /people/{id}
             Method: GET
-        UpdatePeople:
-          Type: Api
-          Properties:
-            RestApiId: !Ref SwapiBasicApiGateway
-            Path: /people/{id}
-            Method: PUT
-        UpdatePeopleByField:
-          Type: Api
-          Properties:
-            RestApiId: !Ref SwapiBasicApiGateway
-            Path: /people/{id}
-            Method: PATCH
-        DeletePeople:
-          Type: Api
-          Properties:
-            RestApiId: !Ref SwapiBasicApiGateway
-            Path: /people/{id}
-            Method: DELETE
   SwapiBasicApiGateway:
     Type: AWS::Serverless::Api
     Properties:
