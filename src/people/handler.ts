@@ -15,13 +15,13 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
             result = await peopleService.findAll(event)
             return {
               statusCode: 200,
-              body: JSON.stringify({ result })
+              body: JSON.stringify(result)
             }
           case "/people/{id}":
             result = await peopleService.findById(event)
             return {
               statusCode: 200,
-              body: JSON.stringify({ result })
+              body: JSON.stringify(result)
             }
           default:
             return {
@@ -37,7 +37,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         result = await peopleService.create(event)
         return {
           statusCode: 200,
-          body: JSON.stringify({ result })
+          body: JSON.stringify(result)
         }
       default:
         return {
