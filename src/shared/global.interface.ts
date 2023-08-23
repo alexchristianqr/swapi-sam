@@ -2,7 +2,7 @@ import { AxiosRequestConfig } from "axios"
 
 export interface ResponseToHandler {
   message: string | null
-  result: any
+  result?: any
   success: boolean
 }
 

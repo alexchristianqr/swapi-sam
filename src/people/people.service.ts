@@ -9,11 +9,10 @@ class PeopleService {
    */
   async create(event: APIGatewayProxyEvent): Promise<ResponseToHandler> {
     const createExampleDto = JSON.parse(event.body)
-    const result = await provider.create(createExampleDto)
+    await provider.create(createExampleDto)
     return {
       success: true,
-      message: "people created",
-      result: result
+      message: "people created"
     }
   }
 
@@ -24,8 +23,6 @@ class PeopleService {
   async findAll(event: APIGatewayProxyEvent): Promise<ResponseToHandler> {
     // const {} = event.queryStringParameters
     const result = await provider.findAll()
-
-    // Retornar re
     return {
       success: true,
       message: "people list",
