@@ -1,6 +1,6 @@
 import { PeopleInterface } from "../people.interface"
 import { CreatePeopleDto } from "../dto/create-people.dto"
-import { PeopleEntity } from "../people.entity"
+import { PeopleModel } from "../people.model"
 
 class PeoplePersistenceGateway implements PeopleInterface {
   private items: Array<any> = []
@@ -9,8 +9,12 @@ class PeoplePersistenceGateway implements PeopleInterface {
     return this.items.push(createPeopleDto)
   }
 
-  async findAll(): Promise<Array<PeopleEntity>> {
+  async findAll(): Promise<Array<PeopleModel>> {
     return this.items
+  }
+
+  findById(id: number): Promise<PeopleModel> {
+    return Promise.resolve(undefined)
   }
 }
 

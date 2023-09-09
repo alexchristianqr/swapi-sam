@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent } from "aws-lambda/trigger/api-gateway-proxy"
-import { provider } from "./gateways/people-mysql.gateway"
+import { provider } from "./gateways/people-swapi.gateway"
 import { ResponseToHandler } from "../shared/global.interface"
 
 class PeopleService {

@@ -20,6 +20,7 @@ class HttpAdapterService {
 
   async get(url: string, options: HttpManagerOptions = {}) {
     try {
+      console.log("jajajajajajaj", { url })
       return axios.get(url)
     } catch (error) {
       if (isAxiosError(error)) throw new ResponseError(error.response)
