@@ -3,6 +3,7 @@ import { CreatePeopleDto } from "../dto/create-people.dto"
 import { PeopleEntity } from "../people.entity"
 import { httpAdapterService } from "../../shared/http-adapter.service"
 import { PeopleModel } from "../people.model"
+import { translateService } from "../../shared/translate.service"
 
 class PeopleSwapiGateway implements PeopleInterface {
   private url = `people`
@@ -18,7 +19,9 @@ class PeopleSwapiGateway implements PeopleInterface {
 
   async findById(id: number): Promise<PeopleModel> {
     const { data } = await httpAdapterService.get(`${this.url}/${id}`)
-    return new PeopleModel(data)
+    let dataTranslated = await translateService.doTranslate(data)
+    console.log({ dataTranslated })
+    return new PeopleModel(dataTranslated)
   }
 }
 
