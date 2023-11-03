@@ -1,5 +1,5 @@
 import axios, { AxiosResponse, isAxiosError } from "axios"
-import { HttpManagerOptions } from "./global.interface"
+import { HttpManagerOptions } from "../interfaces/global.interface"
 
 class ResponseError extends Error {
   private status: number | undefined
@@ -20,7 +20,6 @@ class HttpAdapterService {
 
   async get(url: string, options: HttpManagerOptions = {}) {
     try {
-      console.log("jajajajajajaj", { url })
       return axios.get(url)
     } catch (error) {
       if (isAxiosError(error)) throw new ResponseError(error.response)

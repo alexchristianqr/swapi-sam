@@ -1,13 +1,11 @@
-import { PeopleInterface } from "../people.interface"
-import { CreatePeopleDto } from "../dto/create-people.dto"
-import { databaseService } from "../../shared/database.service"
-import { PeopleEntity } from "../people.entity"
-import { PeopleModel } from "../people.model"
+import { databaseService } from "../../core/services/database.service"
+import { PeopleModel } from "../domain/people.model"
+import { PeopleOutputRepository } from "../domain/ports/people-output.repository"
 
-class PeopleMysqlGateway implements PeopleInterface {
-  async create(createPeopleDto: CreatePeopleDto): Promise<CreatePeopleDto> {
+export class PeopleMysqlRepository implements PeopleOutputRepository {
+  async create(data: any): Promise<any> {
     const sql = `insert into people (nombre, anio_nacimiento, color_ojos, genero, color_pelo, altura, masa, color_piel, planeta, peliculas, especies, naves, vehiculos, url, fecha_creado, fecha_editado) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
-    return databaseService.insert(sql, createPeopleDto)
+    return databaseService.insert(sql, data)
   }
 
   async findAll(): Promise<Array<PeopleModel>> {
@@ -20,5 +18,3 @@ class PeopleMysqlGateway implements PeopleInterface {
     return databaseService.select(sql, [id])
   }
 }
-
-export const provider = new PeopleMysqlGateway()
