@@ -1,6 +1,6 @@
-import { databaseService } from "../../core/services/database.service"
-import { PeopleModel } from "../domain/people.model"
-import { PeopleOutputRepository } from "../domain/ports/people-output.repository"
+import { databaseService } from "../../../core/services/database.service"
+import { PeopleModel } from "../../domain/people.model"
+import { PeopleOutputRepository } from "../../domain/ports/people-output.repository"
 
 export class PeopleMysqlRepository implements PeopleOutputRepository {
   async create(data: any): Promise<any> {

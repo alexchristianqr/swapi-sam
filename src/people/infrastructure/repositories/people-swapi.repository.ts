@@ -1,5 +1,5 @@
-import { httpAdapterService } from "../../shared/services/http-adapter.service"
-import { PeopleOutputRepository } from "../domain/ports/people-output.repository"
+import { httpAdapterService } from "../../../shared/services/http-adapter.service"
+import { PeopleOutputRepository } from "../../domain/ports/people-output.repository"
 
 export class PeopleSwapiRepository implements PeopleOutputRepository {
   private readonly url = `people`

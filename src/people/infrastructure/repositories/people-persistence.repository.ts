@@ -1,5 +1,5 @@
-import { PeopleModel } from "../domain/people.model"
-import { PeopleOutputRepository } from "../domain/ports/people-output.repository"
+import { PeopleModel } from "../../domain/people.model"
+import { PeopleOutputRepository } from "../../domain/ports/people-output.repository"
 
 export class PeoplePersistenceRepository implements PeopleOutputRepository {
   private items: Array<any> = []

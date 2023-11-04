@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda/trigger/api-gateway-proxy"
 import { PeopleController } from "./application/people.controller"
-import { PeopleSwapiRepository } from "./infrastructure/people-swapi.repository"
+import { PeopleSwapiRepository } from "./infrastructure/repositories/people-swapi.repository"
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult | any> => {
   // Logger
